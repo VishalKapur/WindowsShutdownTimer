@@ -1,61 +1,59 @@
-# \# Windows Shutdown Timer
+Windows Shutdown Timer
 
-# 
 
-# A simple Windows desktop application that allows users to schedule a system shutdown after a specified period of time.  
+A simple Windows desktop application that allows users to schedule a system shutdown after a specified time.
 
-# Designed as a lightweight, user-friendly alternative to using Command Prompt or Task Scheduler.
+The application replaces the need to use Command Prompt or Task Scheduler with a modern, user-friendly interface.
 
-# 
 
-# \## Features
 
-# \- Set a shutdown timer using hours and minutes
+Features:
 
-# \- Live countdown display
+- Set a shutdown timer using hours and minutes
 
-# \- Cancel shutdown at any time
+- Live countdown display
 
-# \- Restart the timer anytime with current or new time
+- Cancel countdown at any time
 
-# 
+- Restart the countdown anytime with current or new time
 
-# \## Motivation
 
-# This solution was built to solve a simple problem in Windows which is that you cannot schedule a system shutdown in a user-friendly way.
 
-# The application replaces the need to use Command Prompt or Task Scheduler with a modern, user-friendly interface.
+Motivation:
 
-# 
+This solution was built to solve a simple problem in Windows: scheduling a system shutdown in a user-friendly way.
 
-# \## Technologies Used
+An example use case is shutting down after a large download/upload has completed. 
 
-# \- C#
 
-# \- XAML
+Technologies Used:
 
-# \- WPF (.NET)
+- C#
 
-# 
+- XAML
 
-# \## How to Use
+- WPF (.NET 8)
 
-# 1\. Enter the desired number of hours and minutes
 
-# 2\. Click \*\*Start\*\*
 
-# 3\. The countdown will begin
+How to Use:
 
-# 4\. Click \*\*Cancel\*\* to stop the timer and reset
+1. Enter the desired number of hours and minutes
 
-# 
+2. Click "Start"
 
-# \## Disclaimer
+3. The countdown will begin
 
-# This application triggers a system shutdown using Windows system commands.  
+4. Click "Cancel" to stop the timer and reset
 
-# Use with caution and ensure all work is saved before starting the timer/the timer ends.
 
-# 
+
+Disclaimer:
+
+This application triggers a system shutdown using Windows system commands.
+
+Use with caution and ensure all work is saved before the timer ends.
+
+
 
 <img width="783" height="438" alt="image" src="https://github.com/user-attachments/assets/c258a7e1-dc33-47da-80bb-c5694be93edc" />
