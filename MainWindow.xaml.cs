@@ -25,8 +25,8 @@ namespace WindowsShutdownTimer
         public MainWindow()
         {
             InitializeComponent();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
+            timer.Interval = TimeSpan.FromSeconds(1);   // Timer counts down each second
+            timer.Tick += Timer_Tick;   // Run Timer_Tick() every interval
         }
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
@@ -60,7 +60,7 @@ namespace WindowsShutdownTimer
             else
             {
                 timer.Stop();
-                Process.Start("shutdown", "/s /t 0");
+                Process.Start("shutdown", "/s /t 0");   // Immediately shuts down device
             }
         }
     }
