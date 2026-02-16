@@ -65,7 +65,7 @@
         </StackPanel>
 
         <!-- Countdown -->
-        <TextBlock Grid.Row="3"
+        <TextBlock x:Name="CountdownText" Grid.Row="3"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"
