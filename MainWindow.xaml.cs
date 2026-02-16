@@ -20,5 +20,15 @@ namespace WindowsShutdownTimer
         {
             InitializeComponent();
         }
+
+        private void Start_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
