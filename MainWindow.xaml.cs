@@ -25,6 +25,8 @@ namespace WindowsShutdownTimer
         public MainWindow()
         {
             InitializeComponent();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
         }
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
@@ -44,8 +46,6 @@ namespace WindowsShutdownTimer
         private void CreateCountdown(int hours, int minutes)
         {
             seconds = (hours * 3600) + (minutes * 60);
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
             CountdownText.Text = TimeSpan.FromSeconds(seconds).ToString();
             timer.Start();
         }

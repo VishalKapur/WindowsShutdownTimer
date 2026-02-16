@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsShutdownTimer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Windows Shutdown Timer" Height="450" Width="800">
 
     <Grid Margin="20,20,20,20" ShowGridLines="True">
         <Grid.RowDefinitions>
