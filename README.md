@@ -59,4 +59,5 @@ Use with caution and ensure all work is saved before the timer ends.
 
 #
 
-<img width="783" height="438" alt="image" src="https://github.com/user-attachments/assets/c258a7e1-dc33-47da-80bb-c5694be93edc" />
+<img width="781" height="439" alt="image" src="https://github.com/user-attachments/assets/cc65f9b7-dcdd-4aae-8850-0634a88f025b" />
+
