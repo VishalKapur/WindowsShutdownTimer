@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +24,10 @@ namespace WindowsShutdownTimer
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!int.TryParse(HoursTextBox.Text, out int hours) || !int.TryParse(MinutesTextBox.Text, out int minutes))
+                MessageBox.Show("Please enter a valid number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    // Shows error if either box does not contain a number
+            else;
+                // Begin timer
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
