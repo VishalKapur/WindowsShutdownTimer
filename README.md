@@ -1,13 +1,12 @@
-Windows Shutdown Timer
-
+**Windows Shutdown Timer**
 
 A simple Windows desktop application that allows users to schedule a system shutdown after a specified time.
 
 The application replaces the need to use Command Prompt or Task Scheduler with a modern, user-friendly interface.
 
+#
 
-
-Features:
+**Features:**
 
 - Set a shutdown timer using hours and minutes
 
@@ -17,16 +16,18 @@ Features:
 
 - Restart the countdown anytime with current or new time
 
+#
 
+**Motivation:**
 
-Motivation:
 
 This solution was built to solve a simple problem in Windows: scheduling a system shutdown in a user-friendly way.
 
 An example use case is shutting down after a large download/upload has completed. 
 
+#
 
-Technologies Used:
+**Technologies Used:**
 
 - C#
 
@@ -34,9 +35,10 @@ Technologies Used:
 
 - WPF (.NET 8)
 
+#
 
+**How to Use:**
 
-How to Use:
 
 1. Enter the desired number of hours and minutes
 
@@ -46,14 +48,15 @@ How to Use:
 
 4. Click "Cancel" to stop the timer and reset
 
+#
 
+**Disclaimer:**
 
-Disclaimer:
 
 This application triggers a system shutdown using Windows system commands.
 
 Use with caution and ensure all work is saved before the timer ends.
 
-
+#
 
 <img width="783" height="438" alt="image" src="https://github.com/user-attachments/assets/c258a7e1-dc33-47da-80bb-c5694be93edc" />
