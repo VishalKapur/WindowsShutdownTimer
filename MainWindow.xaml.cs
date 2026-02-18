@@ -63,5 +63,25 @@ namespace WindowsShutdownTimer
                 Process.Start("shutdown", "/s /t 0");   // Immediately shuts down device
             }
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!this.IsLoaded)
+                return;
+
+            var combobox = sender as ComboBox;
+            var current = combobox.SelectedItem as ComboBoxItem;
+
+            if (current.Content.ToString() == "Automatic Folder Tracking")
+            {
+                ManualPanel.Visibility = Visibility.Hidden;
+                AutoPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ManualPanel.Visibility = Visibility.Visible;
+                AutoPanel.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }
