@@ -60,6 +60,7 @@ An example use case is shutting down after a large download has completed.
 3. Device shuts down when the countdown reaches 00:00:00
    
 4. Press "Cancel" at any time to stop the countdown
+   
 
 - Automatic Folder Tracking Mode
 
