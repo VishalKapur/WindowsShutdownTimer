@@ -5,14 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowsShutdownTimer"
         mc:Ignorable="d"
-        Title="Windows Shutdown Timer" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="Windows Shutdown Timer"
+        Height="450"
+        Width="800">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <!-- Title Text -->
@@ -24,8 +27,8 @@
             <Run Language="en-gb"
                  Text="Windows Shutdown Timer"/>
         </TextBlock>
-        
-         <!-- Mode drop-down -->
+
+        <!-- Mode drop-down -->
         <ComboBox Grid.Row="1"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
@@ -33,20 +36,21 @@
                   FontSize="20"
                   HorizontalContentAlignment="Center"
                   SelectionChanged="ComboBox_SelectionChanged"
-                  SelectedIndex="0">
+                  SelectedIndex="0"
+                  Margin="20">
 
             <ComboBoxItem Content="Manual Countdown"/>
 
             <ComboBoxItem Content="Automatic Folder Tracking"/>
         </ComboBox>
 
-        <StackPanel x:Name="ManualPanel" Grid.Row="2" Visibility="Hidden">
-        
+        <!-- Manual Mode -->
+        <StackPanel x:Name="ManualPanel" Grid.Row="2">
+
             <!-- Hours -->
-            <StackPanel
-                Orientation="Horizontal"
-                HorizontalAlignment="Center"
-                Margin="0,10">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="10">
 
                 <TextBlock Text="Hours:"
                            FontSize="20"
@@ -61,10 +65,9 @@
             </StackPanel>
 
             <!-- Minutes -->
-            <StackPanel 
-                Orientation="Horizontal"
-                HorizontalAlignment="Center"
-                Margin="0,10">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="10">
 
                 <TextBlock Text="Minutes:"
                            FontSize="20"
@@ -76,49 +79,86 @@
                          FontSize="20"
                          Width="100"
                          TextAlignment="Center"/>
-
             </StackPanel>
 
             <!-- Countdown -->
             <TextBlock x:Name="CountdownText"
                        Text="00:00:00"
                        FontSize="20"
-                       HorizontalAlignment="Center">
+                       HorizontalAlignment="Center"
+                       Margin="10,20,10,10">
                 <Run Language="en-gb" />
             </TextBlock>
-            
+
         </StackPanel>
 
-        <StackPanel x:Name="AutoPanel" Grid.Row="2">
+        <!-- Auto Mode -->
+        <StackPanel x:Name="AutoPanel" Grid.Row="2" Visibility="Hidden">
+
+            <Button Content="Select Folder"
+                    FontSize="20"
+                    Width="130"
+                    Click="Select_Folder_Button_Click"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Width="700" Margin="20">
+                <TextBlock x:Name="PathText"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Width="720"
+                           TextWrapping="Wrap"/>
+            </Border>
             
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="10"
+                            Width="698">
+
+                    <TextBlock Text="Status:"
+                               FontSize="20"
+                               Width="341"
+                               VerticalAlignment="Center"
+                               Margin="10"
+                               TextAlignment="Center"/>
+
+                <TextBlock x:Name="StatusText"
+                           Text="..."
+                           FontSize="20"
+                           Width="337"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
         </StackPanel>
+
 
         <!-- Buttons -->
         <StackPanel Grid.Row="4"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Center" Height="66" VerticalAlignment="Center">
+                    HorizontalAlignment="Center"
+                    Height="66">
 
             <!-- Start Button -->
             <Button
                 Content="Start"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Center"
+                VerticalAlignment="Top"
                 FontSize="20" 
                 Width="110"
-                Margin="10"
-                Click="Start_Button_Click" TextBlock.FontSize="20"/>
+                Margin="10,0,10,10"
+                Click="Start_Button_Click"
+                TextBlock.FontSize="20"/>
 
             <!-- Cancel Button -->
             <Button
                 Content="Cancel"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Center"  
+                VerticalAlignment="Top"  
                 FontSize="20"
                 Width="110"
-                Margin="10"
-                Click="Cancel_Button_Click" TextBlock.FontSize="20"/>
+                Margin="10,0,10,10"
+                Click="Cancel_Button_Click"
+                TextBlock.FontSize="20"/>
         </StackPanel>
-
-       
     </Grid>
 </Window>
