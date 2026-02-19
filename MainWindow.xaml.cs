@@ -29,7 +29,7 @@ namespace WindowsShutdownTimer
         private DispatcherTimer idleTimer = new DispatcherTimer();  // Timer for folder tracking
         private DateTime lastActivityTime;
         private string selectedPath;
-        private int idleMinutes = 1;   // How long folder is idle until shutdown
+        private int idleMinutes = 10;   // How long folder is idle until shutdown
 
 
         public MainWindow()
@@ -123,6 +123,7 @@ namespace WindowsShutdownTimer
             if (idleTime.TotalMinutes >= idleMinutes)
             {
                 watcher.EnableRaisingEvents = false;
+                watcher.Dispose();
                 idleTimer.Stop();
                 Process.Start("shutdown", "/s /t 0");
             }
