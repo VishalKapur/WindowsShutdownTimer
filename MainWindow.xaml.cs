@@ -76,6 +76,8 @@ namespace WindowsShutdownTimer
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
+            Process.Start("shutdown", "/a");    // Cancels pending shutdown
+
             if (manual)
             {
                 timer.Stop();
@@ -111,7 +113,7 @@ namespace WindowsShutdownTimer
             else
             {
                 timer.Stop();
-                Process.Start("shutdown", "/s /t 0");   // Immediately shut down device
+                Process.Start("shutdown", "/s /t 0");   // Immediately shutdown device
             }
         }
 
@@ -125,7 +127,8 @@ namespace WindowsShutdownTimer
                 watcher.EnableRaisingEvents = false;
                 watcher.Dispose();
                 idleTimer.Stop();
-                Process.Start("shutdown", "/s /t 0");
+                Process.Start("shutdown", "/s /t 60");  // 60s delay to message to show warning
+                StatusText.Text = "Folder inactive - shutdown in <60s...";
             }
         }
 
