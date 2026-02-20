@@ -58,7 +58,7 @@ namespace WindowsShutdownTimer
             }
             else
             {
-                if (selectedPath != null)
+                if (selectedPath != null && selectedPath != "")
                 {
                     watcher = new FileSystemWatcher(selectedPath);
                     watcher.IncludeSubdirectories = true;
