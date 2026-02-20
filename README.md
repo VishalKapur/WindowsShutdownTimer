@@ -16,16 +16,18 @@ The application replaces the need to use Command Prompt or Task Scheduler with a
     
   - Cancel countdown at any time
     
-  - Restart the countdown anytime with current or new time
+  - Restart the countdown at anytime with current or new time
 
 
 - Automatic Folder Tracking Mode
   
-  - Track a specfic folder's (and its subfolders) activity to shutdown when idle for 10 minutes
+  - Track a specfic folder's (and its subfolders) activity to shutdown when it is idle
+ 
+  - Set the threshold for how long to wait to shutdown when a folder is inactive
     
   - Useful for automatically shutting down when a large download finishes
     
-  - Reset monioring anytime with current or new folder
+  - Reset monioring at anytime with current or new folder
 
 #
 
@@ -64,6 +66,8 @@ An example use case is shutting down after a large download has completed.
 
 - Automatic Folder Tracking Mode
 
+  - Enter the threshold for how many minutes to wait after a folder is inactive to shutdown (10 minutes default)
+
   - Select a folder to monitor
     
   - Press "Start" to begin tracking the folder's activity
@@ -83,6 +87,8 @@ Use with caution and ensure all work is saved before shutdown is activated.
 
 #
 
-<img width="781" height="439" alt="image" src="https://github.com/user-attachments/assets/cc65f9b7-dcdd-4aae-8850-0634a88f025b" />
-<img width="783" height="437" alt="image" src="https://github.com/user-attachments/assets/a502770a-5094-4e4d-a7d3-551a04cca4df" />
+<img width="783" height="440" alt="image" src="https://github.com/user-attachments/assets/ac4627d9-2d08-494c-870f-097568ab6f91" />
+
+<img width="784" height="439" alt="image" src="https://github.com/user-attachments/assets/e677a121-eb18-47e5-a50b-bee96b42bc16" />
+
 
