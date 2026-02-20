@@ -37,6 +37,9 @@ namespace WindowsShutdownTimer
             InitializeComponent();
             timer.Interval = TimeSpan.FromSeconds(1);   // Timer counts down each second
             timer.Tick += Timer_Tick;   // Run Timer_Tick() every interval
+
+            idleTimer.Interval = TimeSpan.FromSeconds(10);  // Check every 10 seconds
+            idleTimer.Tick += IdleTimer_Tick;
         }
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
@@ -46,7 +49,12 @@ namespace WindowsShutdownTimer
                 if (!int.TryParse(HoursTextBox.Text, out int hours) || !int.TryParse(MinutesTextBox.Text, out int minutes))
                     MessageBox.Show("Please enter a valid number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    // Shows error if either box does not contain a number
                 else
-                    CreateCountdown(hours, minutes);
+                {
+                    if (hours < 0 || minutes < 0)
+                        MessageBox.Show("Please enter a positive number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else
+                        CreateCountdown(hours, minutes);
+                }
             }
             else
             {
@@ -63,8 +71,6 @@ namespace WindowsShutdownTimer
                     watcher.Renamed += OnFolderActivity;
                     watcher.Deleted += OnFolderActivity;
 
-                    idleTimer.Interval = TimeSpan.FromSeconds(10);  // Check every 10 seconds
-                    idleTimer.Tick += IdleTimer_Tick;
                     idleTimer.Start();
 
                     StatusText.Text = "Monitoring Folder...";
@@ -100,6 +106,7 @@ namespace WindowsShutdownTimer
         {
             seconds = (hours * 3600) + (minutes * 60);
             CountdownText.Text = TimeSpan.FromSeconds(seconds).ToString();
+            timer.Stop();   // Stops any existing timers
             timer.Start();
         }
 
