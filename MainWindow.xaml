@@ -72,13 +72,15 @@
                 <TextBlock Text="Minutes:"
                            FontSize="20"
                            Width="100"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center"
+                           Margin="0,10,0,0"/>
 
                 <TextBox x:Name="MinutesTextBox"
                          Text="0"
                          FontSize="20"
                          Width="100"
-                         TextAlignment="Center"/>
+                         TextAlignment="Center"
+                         Margin="0,10,0,0"/>
             </StackPanel>
 
             <!-- Countdown -->
@@ -95,31 +97,49 @@
         <!-- Auto Mode -->
         <StackPanel x:Name="AutoPanel" Grid.Row="2" Visibility="Hidden">
 
+            <!-- Threshold -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+
+                <TextBlock Text="Threshold (Minutes):"
+                           FontSize="20"
+                           Width="183"
+                           Margin="10,0,10,10"/>
+
+                <TextBox x:Name="ThresholdTextBox"
+                     Text="10"
+                     FontSize="20"
+                     Width="100"
+                     TextAlignment="Center"
+                     VerticalAlignment="Top"/>
+            </StackPanel>
+
+            <!-- Folder Select -->
             <Button Content="Select Folder"
                     FontSize="20"
                     Width="130"
+                    Margin="10"
                     Click="Select_Folder_Button_Click"/>
 
-            <Border BorderBrush="Black" BorderThickness="1" Width="700" Margin="20">
+            <Border BorderBrush="Black" BorderThickness="1" Width="700" Margin="10">
                 <TextBlock x:Name="PathText"
                            FontSize="20"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
-                           Margin="5"
                            Width="720"
                            TextWrapping="Wrap"/>
             </Border>
-            
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            Margin="10"
-                            Width="698">
 
-                    <TextBlock Text="Status:"
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        Width="698">
+
+                <TextBlock Text="Status:"
                                FontSize="20"
                                Width="341"
-                               VerticalAlignment="Center"
-                               Margin="10"
+                               VerticalAlignment="Top"
+                               Margin="10,0,10,10"
                                TextAlignment="Center"/>
 
                 <TextBlock x:Name="StatusText"
@@ -127,7 +147,7 @@
                            FontSize="20"
                            Width="337"
                            TextAlignment="Center"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Top"/>
             </StackPanel>
         </StackPanel>
 

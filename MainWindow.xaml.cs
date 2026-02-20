@@ -44,39 +44,49 @@ namespace WindowsShutdownTimer
 
         private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (manual)
+            if (manual)    // Manual mode
             {
-                if (!int.TryParse(HoursTextBox.Text, out int hours) || !int.TryParse(MinutesTextBox.Text, out int minutes))
-                    MessageBox.Show("Please enter a valid number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    // Shows error if either box does not contain a number
-                else
+                if (int.TryParse(HoursTextBox.Text, out int hours) && int.TryParse(MinutesTextBox.Text, out int minutes))
                 {
-                    if (hours < 0 || minutes < 0)
-                        MessageBox.Show("Please enter a positive number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    else
+                    if (hours >= 0 || minutes >= 0)
                         CreateCountdown(hours, minutes);
-                }
-            }
-            else
-            {
-                if (selectedPath != null && selectedPath != "")
-                {
-                    watcher = new FileSystemWatcher(selectedPath);
-                    watcher.IncludeSubdirectories = true;
-                    watcher.EnableRaisingEvents = true;
-                    lastActivityTime = DateTime.Now;
-
-                    // Calls OnFolderActibity() when file in selected folder (& subfolders) is created, changed, renamed and deleted
-                    watcher.Created += OnFolderActivity;
-                    watcher.Changed += OnFolderActivity;
-                    watcher.Renamed += OnFolderActivity;
-                    watcher.Deleted += OnFolderActivity;
-
-                    idleTimer.Start();
-
-                    StatusText.Text = "Monitoring Folder...";
+                    else
+                        MessageBox.Show("Please enter a positive number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
-                    MessageBox.Show("Please select a valid folder", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    // Shows error if folder not selected
+                    MessageBox.Show("Please enter a valid number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    // Shows error if either box does not contain a number
+            }
+            else    // Auto mode
+            {
+                if (int.TryParse(ThresholdTextBox.Text, out idleMinutes))
+                {
+                    if (idleMinutes > 0)
+                    {
+                        if (selectedPath != null && selectedPath != "")
+                        {
+                            watcher = new FileSystemWatcher(selectedPath);
+                            watcher.IncludeSubdirectories = true;
+                            watcher.EnableRaisingEvents = true;
+                            lastActivityTime = DateTime.Now;
+
+                            // Calls OnFolderActibity() when file in selected folder (& subfolders) is created, changed, renamed and deleted
+                            watcher.Created += OnFolderActivity;
+                            watcher.Changed += OnFolderActivity;
+                            watcher.Renamed += OnFolderActivity;
+                            watcher.Deleted += OnFolderActivity;
+
+                            idleTimer.Start();
+
+                            StatusText.Text = "Monitoring Folder...";
+                        }
+                        else
+                            MessageBox.Show("Please select a valid folder", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    // Shows error if folder not selected#
+                    }
+                    else
+                        MessageBox.Show("Please enter a positive number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                    MessageBox.Show("Please enter a valid threshold number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -135,7 +145,7 @@ namespace WindowsShutdownTimer
                 watcher.Dispose();
                 idleTimer.Stop();
                 Process.Start("shutdown", "/s /t 60");  // 60s delay to message to show warning
-                StatusText.Text = "Folder inactive - shutdown in <60s...";
+                StatusText.Text = "Folder inactive - Shutdown in <60s...";
             }
         }
 
