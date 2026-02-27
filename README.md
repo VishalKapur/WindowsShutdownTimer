@@ -66,7 +66,7 @@ An example use case is shutting down after a large download has completed.
 
 - Automatic Folder Tracking Mode
 
-  - Enter the threshold for how many minutes to wait after a folder is inactive to shutdown (10 minutes default)
+  - Enter the threshold for how many minutes to wait after a folder is inactive to shutdown (10 minutes recommended for large downloads)
 
   - Select a folder to monitor
     
@@ -89,6 +89,4 @@ Use with caution and ensure all work is saved before shutdown is activated.
 
 <img width="783" height="440" alt="image" src="https://github.com/user-attachments/assets/ac4627d9-2d08-494c-870f-097568ab6f91" />
 
-<img width="784" height="439" alt="image" src="https://github.com/user-attachments/assets/e677a121-eb18-47e5-a50b-bee96b42bc16" />
-
-
+<img width="782" height="440" alt="image" src="https://github.com/user-attachments/assets/0ffb14bb-38e0-4191-990c-28689d8a43b5" />
