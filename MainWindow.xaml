@@ -15,7 +15,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Title Text -->
@@ -130,55 +130,40 @@
                            TextWrapping="Wrap"/>
             </Border>
 
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        Margin="10"
-                        Width="698">
-
-                <TextBlock Text="Status:"
-                               FontSize="20"
-                               Width="341"
-                               VerticalAlignment="Top"
-                               Margin="10,0,10,10"
-                               TextAlignment="Center"/>
-
-                <TextBlock x:Name="StatusText"
-                           Text="..."
-                           FontSize="20"
-                           Width="337"
-                           TextAlignment="Center"
-                           VerticalAlignment="Top"/>
-            </StackPanel>
+            <TextBlock x:Name="StatusText"
+                       Text="Status: . . ."
+                       FontSize="20"
+                       Width="700"
+                       TextAlignment="Center" Margin="0,5,0,0"/>
         </StackPanel>
 
 
         <!-- Buttons -->
-        <StackPanel Grid.Row="4"
+        <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Height="66">
+                    HorizontalAlignment="Center">
 
             <!-- Start Button -->
             <Button
                 Content="Start"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
                 FontSize="20" 
                 Width="110"
-                Margin="10,0,10,10"
                 Click="Start_Button_Click"
-                TextBlock.FontSize="20"/>
+                TextBlock.FontSize="20"
+                VerticalAlignment="Center"
+                Margin="0,0,10,0"/>
 
             <!-- Cancel Button -->
             <Button
                 Content="Cancel"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"  
+                VerticalAlignment="Center"  
                 FontSize="20"
                 Width="110"
-                Margin="10,0,10,10"
                 Click="Cancel_Button_Click"
-                TextBlock.FontSize="20"/>
+                TextBlock.FontSize="20"
+                Margin="10,0,0,0"/>
         </StackPanel>
     </Grid>
 </Window>

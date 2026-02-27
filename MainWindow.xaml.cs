@@ -48,10 +48,10 @@ namespace WindowsShutdownTimer
             {
                 if (int.TryParse(HoursTextBox.Text, out int hours) && int.TryParse(MinutesTextBox.Text, out int minutes))
                 {
-                    if (hours >= 0 || minutes >= 0)
+                    if (hours >= 0 && minutes >= 0)
                         CreateCountdown(hours, minutes);
                     else
-                        MessageBox.Show("Please enter a positive number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Please enter a positive whole number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                     MessageBox.Show("Please enter a valid number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    // Shows error if either box does not contain a number
@@ -77,16 +77,16 @@ namespace WindowsShutdownTimer
 
                             idleTimer.Start();
 
-                            StatusText.Text = "Monitoring Folder...";
+                            StatusText.Text = "Status: Monitoring Folder . . .";
                         }
                         else
-                            MessageBox.Show("Please select a valid folder", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    // Shows error if folder not selected#
+                            MessageBox.Show("Please select a valid folder", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
-                        MessageBox.Show("Please enter a positive number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Please enter a theshold of at least 1 minute", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
-                    MessageBox.Show("Please enter a valid threshold number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Please enter a valid whole number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -102,7 +102,7 @@ namespace WindowsShutdownTimer
             else
             {
                 idleTimer.Stop();
-                StatusText.Text = "Cancelled";
+                StatusText.Text = "Status: Cancelled";
 
                 if (watcher != null)
                 {
@@ -137,7 +137,7 @@ namespace WindowsShutdownTimer
         private void IdleTimer_Tick(object? sender, EventArgs e)
         {
             var idleTime = DateTime.Now - lastActivityTime; // Time since last activity
-            StatusText.Text = "Folder Idle for: " + idleTime.ToString(@"hh\:mm\:ss");
+            StatusText.Text = "Status: Folder last active: " + idleTime.ToString(@"hh\:mm\:ss") + " . . .";
 
             if (idleTime.TotalMinutes >= idleMinutes)
             {
@@ -145,7 +145,7 @@ namespace WindowsShutdownTimer
                 watcher.Dispose();
                 idleTimer.Stop();
                 Process.Start("shutdown", "/s /t 60");  // 60s delay to message to show warning
-                StatusText.Text = "Folder inactive - Shutdown in <60s...";
+                StatusText.Text = "Status: Folder inactive - Shutdown in <60s . . .";
             }
         }
 
