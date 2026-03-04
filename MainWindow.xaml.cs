@@ -29,7 +29,10 @@ namespace WindowsShutdownTimer
         private DispatcherTimer idleTimer = new DispatcherTimer();  // Timer for folder tracking
         private DateTime lastActivityTime;
         private string selectedPath;
-        private int idleMinutes = 10;   // How long folder is idle until shutdown
+        private int idleMinutes = 10;   // How long folder/disk is idle until shutdown
+
+        private PerformanceCounter diskWriteCounter = new PerformanceCounter("PhysicalDisk", "Disk Write Bytes/sec", "_Total");
+        private const float diskWriteThreshold = 3_000_000f;  // 3,000,000 Bytes/s = 3 MB/s
 
 
         public MainWindow()
@@ -38,7 +41,7 @@ namespace WindowsShutdownTimer
             timer.Interval = TimeSpan.FromSeconds(1);   // Timer counts down each second
             timer.Tick += Timer_Tick;   // Run Timer_Tick() every interval
 
-            idleTimer.Interval = TimeSpan.FromSeconds(10);  // Check every 10 seconds
+            idleTimer.Interval = TimeSpan.FromSeconds(1);  // Check every second
             idleTimer.Tick += IdleTimer_Tick;
         }
 
@@ -136,8 +139,13 @@ namespace WindowsShutdownTimer
 
         private void IdleTimer_Tick(object? sender, EventArgs e)
         {
+            float currentSpeed = diskWriteCounter.NextValue(); // Current disk write speed in bytes/s
+
+            if (currentSpeed >= diskWriteThreshold)
+                lastActivityTime = DateTime.Now;
+
             var idleTime = DateTime.Now - lastActivityTime; // Time since last activity
-            StatusText.Text = "Status: Folder last active: " + idleTime.ToString(@"hh\:mm\:ss") + " . . .";
+            StatusText.Text = $"Status: Disk Speed: {(currentSpeed / 1024) / 1024:F2} MB/s. Timer: {idleTime.ToString(@"hh\:mm\:ss")}";
 
             if (idleTime.TotalMinutes >= idleMinutes)
             {
