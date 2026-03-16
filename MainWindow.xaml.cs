@@ -20,7 +20,7 @@ namespace WindowsShutdownTimer
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool manual = true; // True if manual mode, false if auto mode
+        private bool manual = true; // True if manual mode, false if auto mode
 
         private DispatcherTimer timer = new DispatcherTimer();  // Timer for countdown
         private int seconds;    // Seconds left on timer
@@ -32,8 +32,7 @@ namespace WindowsShutdownTimer
         private int idleMinutes = 10;   // How long folder/disk is idle until shutdown
 
         private PerformanceCounter diskWriteCounter = new PerformanceCounter("PhysicalDisk", "Disk Write Bytes/sec", "_Total");
-        private const float diskWriteThreshold = 3_000_000f;  // 3,000,000 Bytes/s = 3 MB/s
-
+        private const float diskWriteThreshold = 5_000_000f;  // Speed to ignore idle activity (5,000,000 Bytes/s = 5 MB/s) 
 
         public MainWindow()
         {
@@ -141,7 +140,7 @@ namespace WindowsShutdownTimer
         {
             float currentSpeed = diskWriteCounter.NextValue(); // Current disk write speed in bytes/s
 
-            if (currentSpeed >= diskWriteThreshold)
+            if (currentSpeed >= diskWriteThreshold) // Ignore disk speed under threshold so that idle activity is not counted
                 lastActivityTime = DateTime.Now;
 
             var idleTime = DateTime.Now - lastActivityTime; // Time since last activity
@@ -192,6 +191,5 @@ namespace WindowsShutdownTimer
         {
             lastActivityTime = DateTime.Now;
         }
-
     }
 }
