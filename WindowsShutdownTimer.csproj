@@ -7,6 +7,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <AssemblyName>Windows Shutdown Timer</AssemblyName>
+    <ApplicationIcon>WST logo icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="WST logo icon.ico" />
+  </ItemGroup>
 
 </Project>
