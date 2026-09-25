@@ -30,6 +30,7 @@ namespace WindowsShutdownTimer
         private DateTime lastActivityTime;
         private string selectedPath;
         private int idleMinutes = 10;   // How long folder/disk is idle until shutdown
+        private bool shutdownPending = false;
 
         private PerformanceCounter diskWriteCounter = new PerformanceCounter("PhysicalDisk", "Disk Write Bytes/sec", "_Total");
         private const float diskWriteThreshold = 5_000_000f;  // Speed to ignore idle activity (5,000,000 Bytes/s = 5 MB/s) 
@@ -94,8 +95,6 @@ namespace WindowsShutdownTimer
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("shutdown", "/a");    // Cancels pending shutdown
-
             if (manual)
             {
                 timer.Stop();
@@ -105,11 +104,24 @@ namespace WindowsShutdownTimer
             {
                 idleTimer.Stop();
                 StatusText.Text = "Status: Cancelled";
+                
 
                 if (watcher != null)
                 {
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
+                }
+
+                if (shutdownPending)
+                {
+                    Process.Start(new ProcessStartInfo  // Cancel pending shutdown
+                    {
+                        FileName = "shutdown",
+                        Arguments = "/a",
+                        CreateNoWindow = true,
+                        UseShellExecute = false
+                    });
+                    shutdownPending = false;
                 }
             }
         }
@@ -132,7 +144,13 @@ namespace WindowsShutdownTimer
             else
             {
                 timer.Stop();
-                Process.Start("shutdown", "/s /t 0");   // Immediately shutdown device
+                Process.Start(new ProcessStartInfo  // Immediately shutdown device
+                {
+                    FileName = "shutdown",
+                    Arguments = "/s /t 0",
+                    CreateNoWindow = true,
+                    UseShellExecute = false
+                });   
             }
         }
 
@@ -151,7 +169,14 @@ namespace WindowsShutdownTimer
                 watcher.EnableRaisingEvents = false;
                 watcher.Dispose();
                 idleTimer.Stop();
-                Process.Start("shutdown", "/s /t 60");  // 60s delay to message to show warning
+                Process.Start(new ProcessStartInfo  // Shutdown with 60s delay to to show warning
+                {
+                    FileName = "shutdown",
+                    Arguments = "/s /t 60",
+                    CreateNoWindow = true,
+                    UseShellExecute = false
+                });  
+                shutdownPending = true;
                 StatusText.Text = "Status: Folder inactive - Shutdown in <60s . . .";
             }
         }
