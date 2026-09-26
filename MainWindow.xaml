@@ -45,7 +45,7 @@
         </ComboBox>
 
         <!-- Manual Mode -->
-        <StackPanel x:Name="ManualPanel" Grid.Row="2" Visibility="Hidden">
+        <StackPanel x:Name="ManualPanel" Grid.Row="2">
 
             <!-- Hours -->
             <StackPanel Orientation="Horizontal"
@@ -95,7 +95,7 @@
         </StackPanel>
 
         <!-- Auto Mode -->
-        <StackPanel x:Name="AutoPanel" Grid.Row="2">
+        <StackPanel x:Name="AutoPanel" Grid.Row="2" Visibility="Hidden">
 
             <!-- Thresholds -->
             <StackPanel Orientation="Horizontal"

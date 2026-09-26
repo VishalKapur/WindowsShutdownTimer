@@ -72,6 +72,8 @@ An example use case is shutting down after a large download has completed.
 
   - Enter the threshold for how many minutes to wait after a folder is inactive to shutdown (10 minutes recommended for large downloads)
 
+  - Enter the threshold for how fast the disk speed should be to count as activity (5 MB/s is the default)
+
   - Select a folder to monitor
     
   - Press "Start" to begin tracking the folder's activity
