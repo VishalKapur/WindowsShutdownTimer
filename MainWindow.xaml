@@ -45,7 +45,7 @@
         </ComboBox>
 
         <!-- Manual Mode -->
-        <StackPanel x:Name="ManualPanel" Grid.Row="2">
+        <StackPanel x:Name="ManualPanel" Grid.Row="2" Visibility="Hidden">
 
             <!-- Hours -->
             <StackPanel Orientation="Horizontal"
@@ -95,13 +95,14 @@
         </StackPanel>
 
         <!-- Auto Mode -->
-        <StackPanel x:Name="AutoPanel" Grid.Row="2" Visibility="Hidden">
+        <StackPanel x:Name="AutoPanel" Grid.Row="2">
 
-            <!-- Threshold -->
+            <!-- Thresholds -->
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
 
-                <TextBlock Text="Threshold (Minutes):"
+                <!-- Time Threshold -->
+                <TextBlock Text="Idle Time (Minutes):"
                            FontSize="20"
                            Width="183"
                            Margin="10,0,10,10"/>
@@ -112,6 +113,19 @@
                      Width="100"
                      TextAlignment="Center"
                      VerticalAlignment="Top"/>
+
+                <!-- Speed Threshold -->
+                <TextBlock Text="Disk Speed (MB/s):"
+                           FontSize="20"
+                           Width="183"
+                           Margin="10,0,10,10"/>
+
+                <TextBox x:Name="SpeedThresholdTextBox"
+                         Text="5"
+                         FontSize="20"
+                         Width="100"
+                         TextAlignment="Center"
+                         VerticalAlignment="Top"/>
             </StackPanel>
 
             <!-- Folder Select -->

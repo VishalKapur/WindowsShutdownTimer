@@ -23,15 +23,15 @@ The application replaces the need to use Command Prompt or Task Scheduler with a
 
 - Automatic Folder Tracking Mode
   
-  - Track a specfic folder's (and its subfolders) activity to shutdown when it is idle
+  - Track a specific folder's (and its subfolders) activity to shutdown when it is idle
     
-  - Also tracks disk write speed
+  - Uses folder watching and disk speed monitoring to determine when a folder is idle
  
-  - Set the threshold for how long to wait to shutdown when a folder is inactive and disk speed slows
+  - Set the threshold for how long the folder should be idle for and what disk speed should count as active
     
   - Useful for automatically shutting down when a large download finishes
     
-  - Reset monioring at anytime with current or new folder
+  - Reset monitoring at anytime with current or new folder
 
 #
 
@@ -78,7 +78,7 @@ An example use case is shutting down after a large download has completed.
     
   - When the folder has been inactive and the disk write speed is slow (< 5 MB/s) for at least 10 minutes, device will shutdown in 60 seconds
 
-  - Press "Cancel" at any time to stop moniotring and to stop a pending shutdown
+  - Press "Cancel" at any time to stop monitoring and to stop a pending shutdown
 
 #
 

@@ -1,16 +1,7 @@
-﻿using System.Configuration;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace WindowsShutdownTimer
@@ -33,7 +24,7 @@ namespace WindowsShutdownTimer
         private bool shutdownPending = false;
 
         private PerformanceCounter diskWriteCounter = new PerformanceCounter("PhysicalDisk", "Disk Write Bytes/sec", "_Total");
-        private const float diskWriteThreshold = 5_000_000f;  // Speed to ignore idle activity (5,000,000 Bytes/s = 5 MB/s) 
+        private float diskWriteThreshold = 5_000_000f;  // Speed to ignore idle activity (Default 5,000,000 Bytes/s = 5 MB/s) 
 
         public MainWindow()
         {
@@ -61,10 +52,12 @@ namespace WindowsShutdownTimer
             }
             else    // Auto mode
             {
-                if (int.TryParse(ThresholdTextBox.Text, out idleMinutes))
+                if (int.TryParse(ThresholdTextBox.Text, out idleMinutes) && float.TryParse(SpeedThresholdTextBox.Text, out diskWriteThreshold))
                 {
-                    if (idleMinutes > 0)
+                    if (idleMinutes > 0 && diskWriteThreshold > 0)
                     {
+                        diskWriteThreshold *= 1000000f; // Convert MB/s to Bytes/s
+
                         if (selectedPath != null && selectedPath != "")
                         {
                             watcher = new FileSystemWatcher(selectedPath);
@@ -86,7 +79,7 @@ namespace WindowsShutdownTimer
                             MessageBox.Show("Please select a valid folder", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
-                        MessageBox.Show("Please enter a theshold of at least 1 minute", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Invalid threshold", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                     MessageBox.Show("Please enter a valid whole number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
